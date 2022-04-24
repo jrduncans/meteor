@@ -71,8 +71,7 @@ trait Client[F[_]] {
   def retrieve[P: Encoder, S: Encoder, U: Decoder](
     index: CompositeKeysIndex[P, S],
     query: Query[P, S],
-    consistentRead: Boolean,
-    limit: Int
+    consistentRead: Boolean
   ): fs2.Stream[F, U]
 
   /** Retrieve values from a table by partition key P.
@@ -83,8 +82,7 @@ trait Client[F[_]] {
   ](
     index: CompositeKeysIndex[P, _],
     partitionKey: P,
-    consistentRead: Boolean,
-    limit: Int
+    consistentRead: Boolean
   ): fs2.Stream[F, U]
 
   /** Put an item into a table, return Unit (ReturnValue.NONE).
